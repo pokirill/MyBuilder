@@ -13,17 +13,13 @@
   --ground:#F3F6FB; --surface:#FFFFFF; --surface-2:#EDF2FA; --line:#C9D6E8; --line-soft:#E2EAF5;
   --ink:#0E1B2E; --ink-2:#31415A; --muted:#5D6E88;
   --blue:#0033A1; --blue-2:#1D5BD6; --red:#E4002B;
+  --ok:#0F7B5A; --ok-bg:#E6F4EE; --warn:#8A5A00; --warn-bg:#FBF1DC; --err-bg:#FCE8EC;
   --c1:#0033A1; --c2:#2E6BDC; --c3:#79A7EE; --c4:#B9D2F7; --c5:#12938E;
-  --radius:10px;
-  color-scheme:light;
+  --radius:10px; color-scheme:light;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  background:var(--ground); color:var(--ink);
-  font-family:"Golos Text","Helvetica Neue",Arial,sans-serif; font-size:15px; line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-}
+body{background:var(--ground); color:var(--ink); font-family:"Golos Text","Helvetica Neue",Arial,sans-serif; font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:"Wix Madefor Display","Golos Text",Arial,sans-serif; margin:0; text-wrap:balance; letter-spacing:-.01em}
 a{color:inherit; text-decoration:none}
 button{font:inherit; color:inherit}
@@ -31,8 +27,10 @@ button{font:inherit; color:inherit}
 .num{font-variant-numeric:tabular-nums}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
 
-.demobar{background:#1B2942; color:#E7EEFA; font-size:12.5px; padding:7px 16px; display:flex; gap:10px; align-items:center; justify-content:center; text-align:center}
+.demobar{background:#1B2942; color:#E7EEFA; font-size:12.5px; padding:7px 16px; display:flex; gap:14px; align-items:center; justify-content:center; flex-wrap:wrap}
 .demobar .dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
+.demobar select{background:#2B3B57; color:#E7EEFA; border:1px solid #3D4F6E; border-radius:6px; padding:3px 6px; font-size:12px; font-family:inherit}
+.demobar label{display:flex; gap:6px; align-items:center; color:#AEC0DC}
 
 .topbar{position:sticky; top:0; z-index:40; background:var(--surface); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:16px; padding:10px 16px}
 .logo{display:flex; flex-direction:column; line-height:1.05; font-family:"Wix Madefor Display",Arial,sans-serif; font-weight:800; font-size:16px; letter-spacing:-.02em; flex:none}
@@ -40,9 +38,10 @@ button{font:inherit; color:inherit}
 .logo .b2{color:var(--red); font-size:13.5px; font-weight:700}
 .search{flex:1; min-width:0; position:relative}
 .search input{width:100%; padding:10px 36px 10px 12px; border:1px solid var(--ink); border-radius:6px; background:var(--surface); color:var(--ink); font-size:14px}
-.search input::placeholder{color:var(--muted)}
 .search svg{position:absolute; right:10px; top:50%; transform:translateY(-50%); opacity:.7}
-.org{flex:none; font-size:13.5px; color:var(--ink-2); font-weight:500; white-space:nowrap}
+.org{flex:none; text-align:right; line-height:1.25}
+.org b{font-size:13.5px; font-weight:600; display:block}
+.org span{font-size:12px; color:var(--muted)}
 .burger{display:none; flex:none; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:8px 10px; cursor:pointer}
 
 .shell{display:grid; grid-template-columns:236px minmax(0,1fr); align-items:start}
@@ -53,29 +52,30 @@ button{font:inherit; color:inherit}
 .rail a.active{border-color:var(--red)}
 .main{padding:20px 24px 64px; min-width:0; max-width:1120px}
 
-/* служебные кнопки над контентом — прямоугольные, как в макете */
 .quick{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:20px}
 .quick button{background:var(--surface); border:1px solid var(--ink); border-radius:6px; padding:9px 26px; font-size:14px; cursor:pointer}
 .quick button:hover{border-color:var(--blue); color:var(--blue)}
 
-/* заголовок экрана в рамке + действие справа */
 .titlebar{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border:1.5px solid var(--ink); border-radius:var(--radius); padding:14px 18px; background:var(--surface); margin-bottom:20px}
 .titlebar h1{font-size:27px; font-weight:700}
 h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
-
 .crumbs{display:flex; gap:8px; align-items:center; font-size:13px; color:var(--muted); margin-bottom:12px; flex-wrap:wrap}
 .crumbs a:hover{color:var(--blue); text-decoration:underline}
 
 .card{background:var(--surface); border:1.5px solid var(--ink); border-radius:var(--radius); padding:18px}
+.card.soft{border:1px solid var(--line)}
 .card-h{font-size:16px; font-weight:700; margin-bottom:12px; font-family:"Wix Madefor Display",Arial,sans-serif}
 .grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px}
 .narrow{max-width:420px}
+.form{max-width:560px}
 
 .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--ink); background:var(--surface); color:var(--ink); padding:9px 18px; border-radius:6px; cursor:pointer; font-size:14.5px}
 .btn:hover{border-color:var(--blue); color:var(--blue)}
 .btn-primary{background:var(--red); border-color:var(--red); color:#fff; font-weight:600}
 .btn-primary:hover{filter:brightness(1.07); color:#fff; border-color:var(--red)}
 .btn-ghost{border-style:dashed}
+.btn[disabled]{opacity:.45; cursor:not-allowed}
+.btn-row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:22px}
 
 .tabs{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px}
 .tab{padding:9px 20px; border-radius:6px; border:1px solid var(--ink); background:var(--surface); cursor:pointer; font-size:14px}
@@ -95,37 +95,37 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
 .sect-h{font-size:21px; font-weight:700; margin:26px 0 14px; text-align:center}
 .sect-h.left{text-align:left}
 
-/* меню */
 .menubar{display:flex; gap:12px; flex-wrap:wrap; position:relative; margin:20px 0 14px}
 .menubtn{padding:9px 20px; border:1px solid var(--ink); background:var(--surface); border-radius:6px; cursor:pointer; font-size:14.5px}
 .menubtn[aria-expanded="true"]{border-width:2px; font-weight:700}
 .menu{position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:30; background:var(--surface); border:1.5px solid var(--ink); border-radius:var(--radius); padding:16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px 20px; align-items:start}
-.menu .col{border:1px solid var(--line); border-radius:8px; padding:12px; background:var(--surface)}
+.menu .col{border:1px solid var(--line); border-radius:8px; padding:12px}
 .menu h5{margin:0 0 8px; font-size:13.5px; font-weight:700; font-family:"Golos Text",Arial,sans-serif}
 .menu a{display:block; padding:4px 0; font-size:13.5px; color:var(--ink-2)}
 .menu a:hover{color:var(--blue)}
+.menu a.locked{color:var(--muted)}
+.menu a.locked:hover{color:var(--warn)}
 
-/* баннер-плейсхолдер как в макете */
 .banner{margin-top:16px; border:1.5px solid var(--ink); border-radius:var(--radius); background:var(--surface); padding:24px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap; min-height:170px}
 .banner h3{font-size:20px; margin-bottom:8px}
 .banner p{margin:0; max-width:56ch; color:var(--ink-2); font-size:14.5px}
 .banner-meta{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
 
-/* диаграмма */
 .donut-wrap{display:flex; gap:32px; align-items:center; flex-wrap:wrap}
 .legend{display:flex; flex-direction:column; gap:10px; min-width:220px; flex:1}
 .legend-row{display:flex; align-items:center; gap:10px; font-size:14.5px}
 .legend-row .sw{width:11px;height:11px;border-radius:3px;flex:none}
 .legend-row .lbl{color:var(--ink-2)}
 
-/* формы */
 .field{margin-bottom:18px}
 .field label{display:block; font-size:12.5px; font-weight:600; color:var(--ink-2); margin-bottom:6px}
 .field label .req{color:var(--red)}
-.field input{width:100%; padding:9px 2px; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; color:var(--ink); font-size:15px}
-.field input:focus{border-bottom-color:var(--blue)}
-.field input::placeholder{color:var(--muted)}
-.field.err input{border-bottom-color:var(--red)}
+.field input, .field select{width:100%; padding:9px 2px; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; color:var(--ink); font-size:15px; font-family:inherit}
+.field select{padding:9px 2px}
+.field input:focus, .field select:focus{border-bottom-color:var(--blue)}
+.field .hint{font-size:12.5px; color:var(--muted); margin-top:6px}
+.field.err input, .field.err select{border-bottom-color:var(--red)}
+.field.locked input{color:var(--muted)}
 .err-msg{display:none; color:var(--red); font-size:13px; margin-top:6px}
 .field.err .err-msg{display:block}
 .check{display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:var(--ink-2); margin-bottom:20px}
@@ -135,7 +135,6 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
 .opt input{accent-color:var(--blue); width:17px; height:17px; flex:none}
 .opt .hint{color:var(--muted); font-size:12.5px; margin-left:auto; padding-right:10px}
 
-/* панель с контентом (обзор рынков, статья) */
 .panel{background:var(--surface); border:1.5px solid var(--ink); border-radius:var(--radius); padding:22px; min-height:320px}
 .panel h3{font-size:18px; margin-bottom:8px}
 .panel p{color:var(--ink-2); margin:0 0 18px; max-width:66ch}
@@ -144,10 +143,59 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
 .list a:last-child{border-bottom:0}
 .list a:hover{color:var(--blue)}
 
+/* статусы, плашки */
+.status{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; padding:3px 10px; border-radius:999px; white-space:nowrap}
+.status.ok{background:var(--ok-bg); color:var(--ok)}
+.status.wait{background:var(--warn-bg); color:var(--warn)}
+.status.no{background:var(--err-bg); color:var(--red)}
+.notice{display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-left:4px solid var(--warn); background:var(--warn-bg); border-radius:8px; padding:14px 16px; margin-bottom:20px; flex-wrap:wrap}
+.notice.info{border-left-color:var(--blue); background:var(--surface-2)}
+.notice h4{font-size:15px; margin-bottom:4px}
+.notice p{margin:0; font-size:13.5px; color:var(--ink-2); max-width:72ch}
+.notice .btn{margin-left:auto; flex:none}
+
+/* сводные показатели */
+.figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px; background:var(--line-soft); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:18px}
+.fig{background:var(--surface); padding:14px 16px}
+.fig .k{font-size:12.5px; color:var(--muted); margin-bottom:6px}
+.fig .v{font-size:19px; font-weight:700; font-family:"Wix Madefor Display",Arial,sans-serif}
+.fig .v.up{color:var(--ok)}
+
+/* таймлайн заявки */
+.timeline{display:flex; flex-direction:column; gap:0; margin:8px 0 4px}
+.tl{display:grid; grid-template-columns:28px 1fr; gap:14px; padding-bottom:22px; position:relative}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:""; position:absolute; left:13px; top:26px; bottom:0; width:2px; background:var(--line)}
+.tl:last-child::before{display:none}
+.tl .mark{width:28px; height:28px; border-radius:50%; border:2px solid var(--line); background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:var(--muted)}
+.tl.done .mark{background:var(--ok); border-color:var(--ok); color:#fff}
+.tl.now .mark{border-color:var(--blue); color:var(--blue)}
+.tl h4{font-size:15px; margin-bottom:3px}
+.tl .when{font-size:12.5px; color:var(--muted)}
+.tl p{margin:6px 0 0; font-size:13.5px; color:var(--ink-2); max-width:62ch}
+
+/* таблица истории */
+.filters{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; align-items:flex-end}
+.filters .f{display:flex; flex-direction:column; gap:5px}
+.filters label{font-size:12px; color:var(--muted)}
+.filters select{padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--surface); font-family:inherit; font-size:14px; color:var(--ink)}
+.tablewrap{overflow-x:auto; border:1.5px solid var(--ink); border-radius:var(--radius); background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:680px}
+th, td{text-align:left; padding:12px 16px; border-bottom:1px solid var(--line-soft); font-size:14px}
+th{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:600; background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.sum{text-align:right; font-weight:600; white-space:nowrap}
+td.sum.minus{color:var(--ink)}
+td.sum.plus{color:var(--ok)}
+
 .empty{text-align:center; padding:56px 20px; background:var(--surface); border:1.5px dashed var(--line); border-radius:var(--radius)}
 .empty h2{font-size:22px; margin-bottom:10px}
 .empty p{color:var(--muted); max-width:46ch; margin:0 auto 20px}
 .pill{display:inline-block; font-size:11.5px; font-weight:600; padding:3px 9px; border-radius:999px; background:var(--surface-2); color:var(--ink-2); border:1px solid var(--line)}
+
+.hero{border:1.5px solid var(--ink); border-radius:var(--radius); background:var(--surface); padding:28px; margin-bottom:22px}
+.hero h1{font-size:30px; margin-bottom:12px}
+.hero p{color:var(--ink-2); max-width:64ch; margin:0 0 20px; font-size:15.5px}
 
 .toast{position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#1B2942; color:#fff; padding:12px 18px; border-radius:8px; font-size:14px; z-index:80; transition:opacity .18s ease, transform .18s ease; max-width:90vw; text-align:center}
 .toast.on{opacity:1; transform:translate(-50%,0)}
@@ -160,14 +208,27 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
   .rail.open{transform:none}
   .main{padding:16px 16px 56px}
   .org{display:none}
-  .titlebar h1, h1.plain{font-size:22px}
+  .titlebar h1, h1.plain, .hero h1{font-size:22px}
   .menu{position:static; grid-template-columns:1fr; margin-top:8px}
+  .notice .btn{margin-left:0}
 }
 </style>
 </head>
 <body>
 
-<div class="demobar"><span class="dot"></span><span><b>Демо-прототип.</b> Данные вымышлены, заявки никуда не отправляются.</span></div>
+<div class="demobar">
+  <span class="dot"></span>
+  <span><b>Демо-прототип.</b> Данные вымышлены, операции не исполняются.</span>
+  <label>Клиент <select id="personaSel">
+    <option value="qual">с портфелем, квалифицированный</option>
+    <option value="new">новый, без продуктов</option>
+    <option value="notqual">с портфелем, неквалифицированный</option>
+  </select></label>
+  <label>Роль <select id="roleSel">
+    <option value="treasurer">казначей (готовит)</option>
+    <option value="director">руководитель (подписывает)</option>
+  </select></label>
+</div>
 
 <header class="topbar">
   <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">☰</button>
@@ -176,7 +237,7 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
     <input id="search" type="text" placeholder="Поиск" autocomplete="off">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
   </div>
-  <div class="org">ООО «Ромашка»</div>
+  <div class="org"><b>ООО «Ромашка»</b><span id="userRole">Казначей</span></div>
 </header>
 
 <div class="shell">
@@ -190,7 +251,20 @@ h1.plain{font-size:27px; font-weight:700; margin-bottom:18px}
 (function(){
 "use strict";
 
-var fmt = function(n){ return new Intl.NumberFormat("ru-RU").format(n) + " руб."; };
+/* ============ состояние демо ============ */
+var state = { persona:"qual", role:"treasurer" };
+try{
+  var sp = localStorage.getItem("ib-persona"), sr = localStorage.getItem("ib-role");
+  if(sp) state.persona = sp;
+  if(sr) state.role = sr;
+}catch(e){}
+
+var transfer = null;     // черновик пополнения
+var REQUEST_ID = "БО-2026-0917";
+
+/* ============ данные ============ */
+var rub = function(n){ return new Intl.NumberFormat("ru-RU").format(Math.abs(n)); };
+var fmt = function(n){ return rub(n) + " руб."; };
 function stub(t){ return "#/stub?t=" + encodeURIComponent(t); }
 function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
 var CHART_COLORS = ["var(--c1)","var(--c2)","var(--c3)","var(--c4)","var(--c5)"];
@@ -199,6 +273,37 @@ var PRODUCTS = [
   { id:"broker", name:"Брокерское обслуживание", sum:150000000, route:"#/portfolio/broker" },
   { id:"cfa",    name:"ЦФА",                     sum:200000000, route:stub("ЦФА") },
   { id:"struct", name:"Структурные облигации",   sum:500000000, route:stub("Структурные облигации") }
+];
+
+var ACCOUNTS = [
+  { id:"40702810100000012345", name:"Расчётный счёт", cur:"₽", avail:12450000 },
+  { id:"40702810100000098765", name:"Расчётный счёт (резервный)", cur:"₽", avail:3120000 }
+];
+var BROKER_ACC = "БИС 30060040";
+
+var BROKER_FIGS = { value:150000000, free:4200000, income:8740000, incomePct:6.2, nextCoupon:"14.10.2026" };
+
+var HISTORY = [
+  { d:"16.09.2026", type:"deal",   op:"Покупка",    ins:"ОФЗ 26253, 25 000 шт.",              sum:-25000000, st:"ok" },
+  { d:"15.09.2026", type:"money",  op:"Зачисление", ins:"Пополнение с расчётного счёта",       sum:30000000,  st:"ok" },
+  { d:"12.09.2026", type:"income", op:"Купон",      ins:"Систем2Р14",                          sum:1240000,   st:"ok" },
+  { d:"10.09.2026", type:"deal",   op:"Продажа",    ins:"Сбербанк России, 3 000 шт.",          sum:8600000,   st:"ok" },
+  { d:"09.09.2026", type:"fee",    op:"Комиссия",   ins:"Брокерская комиссия за август",       sum:-42000,    st:"ok" },
+  { d:"08.09.2026", type:"deal",   op:"Покупка",    ins:"ЯНДЕКС1Р5, 15 000 шт.",               sum:-15000000, st:"wait" },
+  { d:"05.09.2026", type:"money",  op:"Вывод",      ins:"На расчётный счёт",                   sum:-5000000,  st:"no" }
+];
+var HIST_TYPES = { all:"Все операции", deal:"Сделки", money:"Движение денег", income:"Купоны и дивиденды", fee:"Комиссии" };
+var ST_LABEL = { ok:["ok","Исполнено"], wait:["wait","В обработке"], no:["no","Отклонено"] };
+
+var REQUEST_STAGES = [
+  { t:"Заявка принята", when:"17.09.2026, 11:24", done:true,
+    p:"Номер обращения " + REQUEST_ID + ". Подтверждение отправлено на почту." },
+  { t:"Проверка документов", when:"17.09.2026, 14:05", done:true,
+    p:"Устав и решение о назначении руководителя проверены. Карточка с образцами подписей получена из расчётного обслуживания." },
+  { t:"Подписание документов", when:"Требуется действие", now:true,
+    p:"Заявление на брокерское обслуживание и декларация о рисках готовы. Подписывает руководитель квалифицированной электронной подписью." },
+  { t:"Счёт открыт", when:"Ожидается до 19.09.2026",
+    p:"После подписания счёт активируется в течение одного рабочего дня, реквизиты придут в этот раздел." }
 ];
 
 var BREAKDOWNS = {
@@ -225,6 +330,9 @@ var ARTICLES = [
   { id:"qual",           t:"Для чего нужен статус квалифицированного инвестора" }
 ];
 
+/* инструменты только для квалифицированных инвесторов */
+var QUAL_ONLY = ["Структурные облигации","Цифровые финансовые активы","Товарный трейдинг","Секьюритизация"];
+
 var PRODUCT_PAGES = {
   broker: {
     title:"Брокерское обслуживание",
@@ -250,25 +358,15 @@ var PRODUCT_PAGES = {
         ["Переменный","Ставка меняется в зависимости от рыночных показателей — например, ключевой ставки ЦБ"],
         ["Плавающий","Ставка пересчитывается регулярно: базовая ставка плюс фиксированная надбавка. Доход зависит от рынка."]
       ]},
-      period:{ label:"По периодичности выплат", items:[
-        ["Ежеквартальный","91 день"],
-        ["Ежемесячный","30 дней"]
-      ]}
+      period:{ label:"По периодичности выплат", items:[["Ежеквартальный","91 день"],["Ежемесячный","30 дней"]] }
     },
     stepsTitle:"Этапы размещения облигаций",
-    steps:[
-      ["Оставьте заявку на консультацию",""],
-      ["Подготовим выпуск и поможем с рейтингом",""],
-      ["Разместим облигации",""]
-    ]
+    steps:[["Оставьте заявку на консультацию",""],["Подготовим выпуск и поможем с рейтингом",""],["Разместим облигации",""]]
   },
   ipo: {
     title:"Выход на IPO",
     featuresTitle:"Зачем выходить на IPO",
-    features:[
-      ["Сделки cash-out","Монетизация долей основателей и пре-IPO инвесторов"],
-      ["Сделки cash-in","Привлечение нового капитала в бизнес"]
-    ],
+    features:[["Сделки cash-out","Монетизация долей основателей и пре-IPO инвесторов"],["Сделки cash-in","Привлечение нового капитала в бизнес"]],
     stepsTitle:"С чего начать процесс выхода на IPO",
     steps:[
       ["Оставьте заявку","Свяжемся с вами и подробно расскажем о проведении сделки"],
@@ -304,12 +402,12 @@ var MENUS = [
   ]},
   { id:"service", label:"Сервисные операции", groups:[
     { h:"Сервисные операции", items:[
-      ["История операций",stub("История операций")],
+      ["История операций","#/history"],
       ["Брокерский отчет","#/report"],
       ["Депо выписка",stub("Депо выписка")],
       ["Справка для получения налогового вычета",stub("Справка для получения налогового вычета")],
       ["Справка о доходах",stub("Справка о доходах")],
-      ["Получить статус квалифицированного инвестора",stub("Статус квалифицированного инвестора")]
+      ["Получить статус квалифицированного инвестора","#/qual"]
     ]}
   ]},
   { id:"markets", label:"Обзор рынков", groups:[
@@ -326,12 +424,15 @@ var MENUS = [
   ]}
 ];
 
-/* ---------- помощники ---------- */
+/* ============ помощники ============ */
 var toastEl = document.getElementById("toast"), toastTimer = null;
 function toast(msg){
   toastEl.textContent = msg; toastEl.classList.add("on");
-  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toastEl.classList.remove("on"); }, 2600);
+  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toastEl.classList.remove("on"); }, 2800);
 }
+function isNew(){ return state.persona === "new"; }
+function isQual(){ return state.persona !== "notqual"; }
+function canSign(){ return state.role === "director"; }
 
 function donut(items, size){
   size = size || 212;
@@ -346,50 +447,80 @@ function donut(items, size){
   });
   return '<svg viewBox="0 0 200 200" width="' + size + '" height="' + size + '" role="img" aria-label="Диаграмма распределения">' + arcs +
     '<text x="100" y="104" text-anchor="middle" fill="var(--ink)" font-size="' + (size < 200 ? 10 : 11) + '" font-weight="700" font-family="Wix Madefor Display, Arial">' +
-    esc(new Intl.NumberFormat("ru-RU").format(items.reduce(function(s,i){ return s+i[1]; },0)) + " ₽") + '</text></svg>';
+    esc(rub(total) + " ₽") + '</text></svg>';
 }
-
 function legend(items){
   return '<div class="legend">' + items.map(function(it,i){
     return '<div class="legend-row"><span class="sw" style="background:' + CHART_COLORS[i % CHART_COLORS.length] + '"></span>' +
-      '<span class="lbl">' + esc(it[0]) + ' — <span class="num">' + esc(new Intl.NumberFormat("ru-RU").format(it[1])) + ' Р</span></span></div>';
+      '<span class="lbl">' + esc(it[0]) + ' — <span class="num">' + esc(rub(it[1])) + ' Р</span></span></div>';
   }).join("") + '</div>';
 }
-
 function crumbs(parts){
   return '<div class="crumbs">' + parts.map(function(p,i){
     return i === parts.length - 1 ? '<span>' + esc(p[0]) + '</span>' : '<a href="' + p[1] + '">' + esc(p[0]) + '</a><span>›</span>';
   }).join("") + '</div>';
 }
-
 function quickbar(){
   return '<div class="quick">' +
     '<button data-demo="Раздел помощи не входит в прототип">Помощь</button>' +
     '<button data-demo="Чат с персональным менеджером — заглушка">Ваш менеджер</button>' +
     '<button data-demo="Возврат к предыдущей версии интерфейса — заглушка">Предыдущая версия</button></div>';
 }
-
 function titlebar(title, actionHtml){
   return '<div class="titlebar"><h1>' + esc(title) + '</h1>' + (actionHtml || "") + '</div>';
 }
-
 function steps(list){
   return '<div class="steps">' + list.map(function(s,i){
-    return '<div class="step"><div class="n num">' + (i+1) + '</div><h4>' + esc(s[0]) + '</h4>' +
-      (s[1] ? '<p>' + esc(s[1]) + '</p>' : '') + '</div>';
+    return '<div class="step"><div class="n num">' + (i+1) + '</div><h4>' + esc(s[0]) + '</h4>' + (s[1] ? '<p>' + esc(s[1]) + '</p>' : '') + '</div>';
   }).join("") + '</div>';
 }
-
 function featureCards(list){
   return '<div class="grid3">' + list.map(function(f){
     return '<div class="card"><div class="card-h">' + esc(f[0]) + '</div><p style="margin:0;color:var(--ink-2);font-size:14px">' + esc(f[1]) + '</p></div>';
   }).join("") + '</div>';
 }
+function qualNotice(){
+  if(isQual()) return "";
+  return '<div class="notice"><div><h4>Статус: неквалифицированный инвестор</h4>' +
+    '<p>Доступны облигации с рейтингом не ниже A−, ОФЗ, депозиты и РЕПО. Структурные продукты, ЦФА и товарный трейдинг откроются после получения статуса.</p></div>' +
+    '<a class="btn" href="#/qual">Получить статус</a></div>';
+}
 
-/* ---------- экраны ---------- */
+/* ============ экраны ============ */
 var VIEWS = {};
 
+/* --- главная: клиент без продуктов --- */
+VIEWS.homeEmpty = function(){
+  return quickbar() +
+    '<div class="hero"><h1>Инвестбанк для вашей компании</h1>' +
+    '<p>Размещайте свободные остатки под рыночную ставку, привлекайте финансирование на бирже и защищайте бизнес от валютных рисков — в том же кабинете, где ведёте расчёты.</p>' +
+    '<div class="btn-row" style="margin-top:0"><a class="btn btn-primary" href="#/apply/broker">Открыть брокерский счёт</a>' +
+    '<a class="btn" href="#/article/broker-account">Как это работает</a></div></div>' +
+    '<div class="figs"><div class="fig"><div class="k">Ставка по коротким облигациям</div><div class="v num">17,4% годовых</div></div>' +
+    '<div class="fig"><div class="k">Минимальная сумма</div><div class="v num">1 000 000 ₽</div></div>' +
+    '<div class="fig"><div class="k">Срок открытия счёта</div><div class="v">до 3 рабочих дней</div></div>' +
+    '<div class="fig"><div class="k">Комиссия за открытие</div><div class="v">0 ₽</div></div></div>' +
+    '<h2 class="sect-h left">Что можно делать</h2>' +
+    featureCards([
+      ["Разместить свободные деньги","Однодневное РЕПО, депозиты и облигации вместо остатка на расчётном счёте"],
+      ["Привлечь финансирование","Выпуск облигаций, секьюритизация и подготовка к IPO"],
+      ["Снизить риски","Хеджирование валюты, ставок и цен на сырьё"]
+    ]) +
+    '<h2 class="sect-h">Три шага до первой сделки</h2>' +
+    steps([
+      ["Оставьте заявку","Заполните контакты — ответим в рабочий день"],
+      ["Подпишите документы","Заявление и декларация о рисках подписываются электронной подписью"],
+      ["Пополните счёт","Переведите деньги с расчётного счёта и выберите инструмент"]
+    ]) +
+    '<div class="banner" style="min-height:0"><div><div class="banner-meta">Обучение</div>' +
+    '<h3>Где разместить свободные деньги компании</h3>' +
+    '<p>Разбор инструментов для казначейства: от однодневного РЕПО до облигаций с фиксированным купоном.</p></div>' +
+    '<a class="btn" href="#/article/broker-account">Читать</a></div>';
+};
+
+/* --- главная: клиент с продуктами --- */
 VIEWS.home = function(){
+  if(isNew()) return VIEWS.homeEmpty();
   var rows = PRODUCTS.map(function(p){
     return '<button class="row" data-go="' + p.route + '"><span class="row-name">' + esc(p.name) + '</span>' +
       '<span class="row-val num">' + esc(fmt(p.sum)) + '</span></button>';
@@ -398,9 +529,14 @@ VIEWS.home = function(){
     return '<button class="menubtn" data-menu="' + m.id + '" aria-expanded="false" aria-haspopup="true">' + esc(m.label) + '</button>';
   }).join("") + '<div id="menuHost"></div></div>';
 
-  return quickbar() +
+  return quickbar() + qualNotice() +
+    '<div class="notice info"><div><h4>Заявка ' + esc(REQUEST_ID) + ': требуется подписание</h4>' +
+      '<p>Заявление на брокерское обслуживание готово к подписанию. Счёт активируется в течение рабочего дня после подписи.</p></div>' +
+      '<a class="btn" href="#/request">Открыть заявку</a></div>' +
     '<div class="card"><div class="card-h">Мои продукты</div><div class="rows">' + rows + '</div>' +
-    '<div style="margin-top:14px"><a class="btn" href="#/portfolio">Структура портфеля</a></div></div>' +
+    '<div class="btn-row" style="margin-top:14px"><a class="btn" href="#/portfolio">Структура портфеля</a>' +
+    '<a class="btn" href="#/transfer">Пополнить брокерский счёт</a>' +
+    '<a class="btn" href="#/history">История операций</a></div></div>' +
     menubar +
     '<div class="banner"><div><div class="banner-meta">Интерактивный баннер</div>' +
       '<h3>Разместите свободные остатки под 17,4% годовых</h3>' +
@@ -423,14 +559,202 @@ VIEWS.portfolio = function(){
 
 VIEWS.broker = function(tab){
   tab = BREAKDOWNS[tab] ? tab : "assets";
-  var b = BREAKDOWNS[tab];
+  var b = BREAKDOWNS[tab], f = BROKER_FIGS;
   var tabs = Object.keys(BREAKDOWNS).map(function(k){
     return '<button class="tab" role="tab" aria-selected="' + (k === tab) + '" data-go="#/portfolio/broker/' + k + '">' + esc(BREAKDOWNS[k].label) + '</button>';
   }).join("");
   return crumbs([["Инвестбанк","#/"],["Структура портфеля","#/portfolio"],["Брокерское обслуживание"]]) + quickbar() +
-    titlebar("Брокерское обслуживание", '<a class="btn" href="#/report">Брокерский отчет</a>') +
+    titlebar("Брокерское обслуживание",
+      '<span style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#/transfer">Пополнить</a>' +
+      '<a class="btn" href="#/report">Брокерский отчет</a></span>') +
+    '<div class="figs">' +
+      '<div class="fig"><div class="k">Оценка портфеля</div><div class="v num">' + esc(rub(f.value)) + ' ₽</div></div>' +
+      '<div class="fig"><div class="k">Свободные средства</div><div class="v num">' + esc(rub(f.free)) + ' ₽</div></div>' +
+      '<div class="fig"><div class="k">Доход с начала года</div><div class="v num up">+' + esc(rub(f.income)) + ' ₽ · ' + String(f.incomePct).replace(".",",") + '%</div></div>' +
+      '<div class="fig"><div class="k">Ближайший купон</div><div class="v">' + esc(f.nextCoupon) + '</div></div>' +
+    '</div>' +
     '<div class="tabs" role="tablist">' + tabs + '</div>' +
     '<div class="donut-wrap">' + donut(b.items, 300) + legend(b.items) + '</div>';
+};
+
+/* --- пополнение брокерского счёта --- */
+VIEWS.transfer = function(){
+  var opts = ACCOUNTS.map(function(a){
+    return '<option value="' + a.id + '">' + esc(a.name + " · " + a.id) + '</option>';
+  }).join("");
+  return crumbs([["Инвестбанк","#/"],["Брокерское обслуживание","#/portfolio/broker"],["Пополнение"]]) + quickbar() +
+    titlebar("Пополнение брокерского счёта") +
+    '<div class="card form"><form id="transferForm" novalidate>' +
+      '<div class="field"><label for="from">Счёт списания</label><select id="from">' + opts + '</select>' +
+        '<div class="hint" id="availHint"></div></div>' +
+      '<div class="field"><label for="to">Счёт зачисления</label>' +
+        '<input id="to" type="text" value="' + esc(BROKER_ACC) + ' · брокерский счёт" readonly></div>' +
+      '<div class="field" id="f-sum"><label for="sum">Сумма, ₽ <span class="req">*</span></label>' +
+        '<input id="sum" type="text" inputmode="numeric" placeholder="1 000 000" autocomplete="off">' +
+        '<div class="hint">Минимальная сумма пополнения — 100 000 ₽</div>' +
+        '<div class="err-msg" id="sumErr">Укажите сумму</div></div>' +
+      '<div class="field locked"><label for="purpose">Назначение платежа</label>' +
+        '<input id="purpose" type="text" readonly value="Перевод собственных средств по договору о брокерском обслуживании № 30060040. НДС не облагается.">' +
+        '<div class="hint">Формируется банком и не редактируется — от текста зависит зачисление на брокерский счёт</div></div>' +
+      '<div class="figs" style="margin:22px 0 0">' +
+        '<div class="fig"><div class="k">Комиссия за перевод</div><div class="v">0 ₽</div></div>' +
+        '<div class="fig"><div class="k">Срок зачисления</div><div class="v">сегодня до 18:00</div></div>' +
+      '</div>' +
+      '<div class="btn-row"><button class="btn btn-primary" type="submit">Продолжить</button>' +
+      '<a class="btn" href="#/portfolio/broker">Отмена</a></div>' +
+    '</form></div>';
+};
+
+VIEWS.transferConfirm = function(){
+  if(!transfer) { location.hash = "#/transfer"; return ""; }
+  var acc = ACCOUNTS.filter(function(a){ return a.id === transfer.from; })[0] || ACCOUNTS[0];
+  var action = canSign()
+    ? '<button class="btn btn-primary" id="toSign">Подписать и отправить</button>'
+    : '<button class="btn btn-primary" id="toSign">Отправить на подпись</button>';
+  var roleHint = canSign()
+    ? "Вы подписываете документ сами: роль «Руководитель» даёт право подписи."
+    : "Роль «Казначей» готовит платёж, подписывает руководитель. После отправки документ появится у него в списке на подпись.";
+  return crumbs([["Инвестбанк","#/"],["Пополнение","#/transfer"],["Подтверждение"]]) + quickbar() +
+    titlebar("Проверьте платёж") +
+    '<div class="card form">' +
+      '<div class="rows">' +
+        '<div class="row" style="cursor:default"><span>Счёт списания</span><span class="row-val mono">' + esc(acc.id) + '</span></div>' +
+        '<div class="row" style="cursor:default"><span>Счёт зачисления</span><span class="row-val mono">' + esc(BROKER_ACC) + '</span></div>' +
+        '<div class="row" style="cursor:default"><span>Сумма</span><span class="row-val num">' + esc(rub(transfer.sum)) + ' ₽</span></div>' +
+        '<div class="row" style="cursor:default"><span>Комиссия</span><span class="row-val">0 ₽</span></div>' +
+        '<div class="row" style="cursor:default"><span>Остаток после перевода</span><span class="row-val num">' + esc(rub(acc.avail - transfer.sum)) + ' ₽</span></div>' +
+        '<div class="row" style="cursor:default"><span>Зачисление</span><span class="row-val">сегодня до 18:00</span></div>' +
+      '</div>' +
+      '<div class="notice info" style="margin:20px 0 0"><div><h4>Кто подписывает</h4><p>' + esc(roleHint) + '</p></div></div>' +
+      '<div class="btn-row">' + action + '<a class="btn" href="#/transfer">Изменить</a></div>' +
+    '</div>';
+};
+
+VIEWS.transferSign = function(){
+  if(!transfer) { location.hash = "#/transfer"; return ""; }
+  return crumbs([["Инвестбанк","#/"],["Пополнение","#/transfer"],["Подписание"]]) + quickbar() +
+    titlebar("Подписание документа") +
+    '<div class="card form"><form id="signForm" novalidate>' +
+      '<div class="field"><label for="cert">Сертификат подписи</label><select id="cert">' +
+        '<option>Попов К. А. · руководитель · действует до 12.04.2027</option>' +
+        '<option>Совкомбанк Бизнес · облачная подпись</option></select></div>' +
+      '<div class="field" id="f-code"><label for="code">Код из СМС на +7 (999) ***-**-14 <span class="req">*</span></label>' +
+        '<input id="code" type="text" inputmode="numeric" placeholder="4 цифры" autocomplete="one-time-code">' +
+        '<div class="hint">В прототипе подойдёт любой код из четырёх цифр</div>' +
+        '<div class="err-msg">Введите четыре цифры</div></div>' +
+      '<div class="btn-row"><button class="btn btn-primary" type="submit">Подписать</button>' +
+      '<a class="btn" href="#/transfer/confirm">Назад</a></div>' +
+    '</form></div>';
+};
+
+VIEWS.transferDone = function(){
+  if(!transfer) { location.hash = "#/transfer"; return ""; }
+  var signed = transfer.signed;
+  return crumbs([["Инвестбанк","#/"],["Пополнение","#/transfer"],["Готово"]]) +
+    '<div class="card" style="max-width:640px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px">' +
+        '<h1 style="font-size:24px">' + (signed ? "Платёж принят" : "Отправлено на подпись") + '</h1>' +
+        '<span class="status ' + (signed ? "ok" : "wait") + '">' + (signed ? "Исполнено" : "Ожидает подписи") + '</span></div>' +
+      '<div class="rows">' +
+        '<div class="row" style="cursor:default"><span>Документ №</span><span class="row-val mono">' + esc(transfer.doc) + '</span></div>' +
+        '<div class="row" style="cursor:default"><span>Сумма</span><span class="row-val num">' + esc(rub(transfer.sum)) + ' ₽</span></div>' +
+        '<div class="row" style="cursor:default"><span>Зачисление на ' + esc(BROKER_ACC) + '</span><span class="row-val">' + (signed ? "сегодня до 18:00" : "после подписи руководителем") + '</span></div>' +
+      '</div>' +
+      '<div class="btn-row"><a class="btn btn-primary" href="#/history">История операций</a>' +
+      '<button class="btn" data-demo="Квитанция в PDF — заглушка прототипа">Скачать квитанцию</button>' +
+      '<a class="btn" href="#/">На главную</a></div>' +
+    '</div>';
+};
+
+/* --- статус заявки --- */
+VIEWS.request = function(){
+  var stages = REQUEST_STAGES.map(function(s,i){
+    var cls = s.done ? "done" : (s.now ? "now" : "");
+    return '<div class="tl ' + cls + '"><div class="mark">' + (s.done ? "✓" : (i+1)) + '</div>' +
+      '<div><h4>' + esc(s.t) + '</h4><div class="when">' + esc(s.when) + '</div><p>' + esc(s.p) + '</p></div></div>';
+  }).join("");
+  var signBlock = canSign()
+    ? '<div class="btn-row" style="margin-top:0"><button class="btn btn-primary" id="signDocs">Подписать документы</button>' +
+      '<button class="btn" data-demo="Просмотр заявления в PDF — заглушка">Посмотреть заявление</button></div>'
+    : '<div class="btn-row" style="margin-top:0"><button class="btn" id="askSign">Запросить подпись руководителя</button>' +
+      '<button class="btn" data-demo="Просмотр заявления в PDF — заглушка">Посмотреть заявление</button></div>';
+  return crumbs([["Инвестбанк","#/"],["Заявка " + REQUEST_ID]]) + quickbar() +
+    titlebar("Заявка " + REQUEST_ID, '<span class="status wait">Требуется подписание</span>') +
+    '<div class="grid3" style="grid-template-columns:minmax(0,2fr) minmax(240px,1fr)">' +
+      '<div class="card"><div class="card-h">Брокерское обслуживание</div>' + '<div class="timeline">' + stages + '</div>' +
+        '<div class="notice" style="margin:18px 0 0"><div><h4>Нужно от вас</h4>' +
+        '<p>Подписать заявление на брокерское обслуживание и декларацию о рисках. Подпись — квалифицированная, руководителя.</p>' +
+        signBlock + '</div></div></div>' +
+      '<div class="card soft"><div class="card-h">Ваш менеджер</div>' +
+        '<p style="margin:0 0 6px;font-weight:600">Анна Ковалёва</p>' +
+        '<p style="margin:0 0 14px;color:var(--muted);font-size:13.5px">Инвестиционный блок, корпоративные клиенты</p>' +
+        '<div class="rows"><div class="row" style="cursor:default"><span>Телефон</span><span class="row-val mono">+7 495 000-11-22</span></div>' +
+        '<div class="row" style="cursor:default"><span>Почта</span><span class="row-val" style="font-size:13px">a.kovaleva@example.ru</span></div>' +
+        '<div class="row" style="cursor:default"><span>Ответим до</span><span class="row-val">19.09.2026</span></div></div>' +
+        '<div class="btn-row"><button class="btn" data-demo="Чат с менеджером — заглушка">Написать</button></div></div>' +
+    '</div>';
+};
+
+/* --- история операций --- */
+VIEWS.history = function(){
+  var type = VIEWS.history.type || "all";
+  var items = HISTORY.filter(function(h){ return type === "all" || h.type === type; });
+  var typeOpts = Object.keys(HIST_TYPES).map(function(k){
+    return '<option value="' + k + '"' + (k === type ? " selected" : "") + '>' + esc(HIST_TYPES[k]) + '</option>';
+  }).join("");
+  var income = items.reduce(function(s,h){ return h.sum > 0 ? s + h.sum : s; }, 0);
+  var outcome = items.reduce(function(s,h){ return h.sum < 0 ? s + h.sum : s; }, 0);
+
+  var body = items.length ? items.map(function(h){
+    var st = ST_LABEL[h.st];
+    return '<tr><td class="num">' + esc(h.d) + '</td><td>' + esc(h.op) + '</td><td>' + esc(h.ins) + '</td>' +
+      '<td class="sum num ' + (h.sum > 0 ? "plus" : "minus") + '">' + (h.sum > 0 ? "+" : "−") + esc(rub(h.sum)) + ' ₽</td>' +
+      '<td><span class="status ' + st[0] + '">' + esc(st[1]) + '</span></td></tr>';
+  }).join("") : '<tr><td colspan="5" style="padding:38px 16px;text-align:center;color:var(--muted)">За выбранный период операций этого типа нет</td></tr>';
+
+  return crumbs([["Инвестбанк","#/"],["Сервисные операции"],["История операций"]]) + quickbar() +
+    titlebar("История операций", '<span style="display:flex;gap:10px;flex-wrap:wrap">' +
+      '<button class="btn" data-export="Excel">Excel</button>' +
+      '<button class="btn" data-export="XML">XML для 1С</button>' +
+      '<button class="btn" data-export="PDF">PDF с подписью</button></span>') +
+    '<div class="filters">' +
+      '<div class="f"><label for="fPeriod">Период</label><select id="fPeriod"><option>Сентябрь 2026</option><option>3 квартал 2026</option><option>Год</option></select></div>' +
+      '<div class="f"><label for="fType">Тип операции</label><select id="fType">' + typeOpts + '</select></div>' +
+      '<div class="f"><label for="fAcc">Счёт</label><select id="fAcc"><option>' + esc(BROKER_ACC) + '</option><option>БИС 50070089</option></select></div>' +
+    '</div>' +
+    '<div class="figs"><div class="fig"><div class="k">Поступления за период</div><div class="v num up">+' + esc(rub(income)) + ' ₽</div></div>' +
+      '<div class="fig"><div class="k">Списания за период</div><div class="v num">−' + esc(rub(outcome)) + ' ₽</div></div>' +
+      '<div class="fig"><div class="k">Операций</div><div class="v num">' + items.length + '</div></div></div>' +
+    '<div class="tablewrap"><table><thead><tr><th>Дата</th><th>Операция</th><th>Инструмент</th><th style="text-align:right">Сумма</th><th>Статус</th></tr></thead>' +
+    '<tbody>' + body + '</tbody></table></div>';
+};
+
+/* --- статус квалифицированного инвестора --- */
+VIEWS.qual = function(){
+  if(isQual()){
+    return crumbs([["Инвестбанк","#/"],["Статус инвестора"]]) + quickbar() +
+      titlebar("Статус квалифицированного инвестора", '<span class="status ok">Статус подтверждён</span>') +
+      '<div class="card form"><p style="margin:0 0 12px">Компания признана квалифицированным инвестором 14.03.2025 по признаку «стоимость активов».</p>' +
+      '<div class="rows"><div class="row" style="cursor:default"><span>Основание</span><span class="row-val">Активы свыше 100 млн ₽</span></div>' +
+      '<div class="row" style="cursor:default"><span>Действует до</span><span class="row-val">Бессрочно, с ежегодным подтверждением</span></div>' +
+      '<div class="row" style="cursor:default"><span>Следующее подтверждение</span><span class="row-val">14.03.2027</span></div></div>' +
+      '<div class="btn-row"><button class="btn" data-demo="Свидетельство в PDF — заглушка">Скачать свидетельство</button></div></div>';
+  }
+  return crumbs([["Инвестбанк","#/"],["Статус инвестора"]]) + quickbar() +
+    titlebar("Получить статус квалифицированного инвестора", '<span class="status wait">Нет статуса</span>') +
+    '<p style="max-width:66ch;color:var(--ink-2)">Статус открывает структурные облигации, ЦФА, товарный трейдинг и сделки с иностранными инструментами. Достаточно соответствовать одному из признаков.</p>' +
+    '<h2 class="sect-h left">Признаки для юридического лица</h2>' +
+    featureCards([
+      ["Стоимость активов","Собственный капитал или активы компании от 100 млн ₽ по последней отчётности"],
+      ["Обороты по сделкам","Оборот по операциям с ценными бумагами от 50 млн ₽ за последние четыре квартала"],
+      ["Опыт операций","Не менее десяти сделок в квартал в течение года на сумму от 10 млн ₽"]
+    ]) +
+    '<div class="card" style="margin-top:22px;max-width:640px"><div class="card-h">Что потребуется приложить</div>' +
+      '<div class="list"><a href="#" data-demo="Загрузка документа — заглушка">- Бухгалтерская отчётность за последний год</a>' +
+      '<a href="#" data-demo="Загрузка документа — заглушка">- Справка об оборотах от текущего брокера</a>' +
+      '<a href="#" data-demo="Загрузка документа — заглушка">- Заявление о признании квалифицированным инвестором</a></div>' +
+      '<div class="btn-row"><a class="btn btn-primary" href="#/apply/broker">Подать заявление</a>' +
+      '<a class="btn" href="' + stub("Тест на знание инструментов") + '">Пройти тест</a></div></div>';
 };
 
 VIEWS.product = function(id){
@@ -438,16 +762,13 @@ VIEWS.product = function(id){
   if(!p) return VIEWS.stub("Продукт");
   var body;
   if(p.tabs){
-    var keys = Object.keys(p.tabs);
-    var sub = location.hash.split("/")[3];
+    var keys = Object.keys(p.tabs), sub = location.hash.split("/")[3];
     var active = p.tabs[sub] ? sub : keys[0];
     body = '<div class="tabs" role="tablist" style="justify-content:center">' + keys.map(function(k){
         return '<button class="tab" role="tab" aria-selected="' + (k === active) + '" data-go="#/product/' + id + '/' + k + '">' + esc(p.tabs[k].label) + '</button>';
       }).join("") + '</div>' + featureCards(p.tabs[active].items);
-  } else {
-    body = featureCards(p.features);
-  }
-  return crumbs([["Инвестбанк","#/"],[p.title]]) + quickbar() +
+  } else body = featureCards(p.features);
+  return crumbs([["Инвестбанк","#/"],[p.title]]) + quickbar() + qualNotice() +
     titlebar(p.title, '<a class="btn btn-primary" href="#/apply/' + id + '">Оставить заявку</a>') +
     '<h2 class="sect-h left">' + esc(p.featuresTitle) + '</h2>' + body +
     '<h2 class="sect-h">' + esc(p.stepsTitle) + '</h2>' + steps(p.steps);
@@ -457,7 +778,7 @@ VIEWS.apply = function(id){
   var p = PRODUCT_PAGES[id] || { title:"Инвестиционные продукты" };
   return crumbs([["Инвестбанк","#/"],[p.title,"#/product/" + id],["Заявка"]]) + quickbar() +
     titlebar(p.title) +
-    '<div class="card narrow" style="max-width:560px"><form id="applyForm" novalidate>' +
+    '<div class="card form"><form id="applyForm" novalidate>' +
       '<h3 style="font-size:19px;margin-bottom:18px">Оставить заявку на консультацию</h3>' +
       '<div class="field" id="f-name"><label for="fio">ФИО <span class="req">*</span></label>' +
         '<input id="fio" type="text" placeholder="Иванов Иван Иванович" autocomplete="name"><div class="err-msg">Укажите фамилию и имя</div></div>' +
@@ -474,12 +795,13 @@ VIEWS.apply = function(id){
 
 VIEWS.applyDone = function(id){
   var p = PRODUCT_PAGES[id] || { title:"Инвестиционные продукты" };
-  return '<div class="empty" style="border-style:solid"><div class="pill" style="margin-bottom:14px">Демо</div>' +
-    '<h2>Заявка принята</h2>' +
-    '<p>Это прототип: заявка по продукту «' + esc(p.title) + '» никуда не отправлена и нигде не сохранена.</p>' +
-    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-      '<a class="btn" href="#/">На главную Инвестбанка</a>' +
-      '<a class="btn btn-ghost" href="#/product/' + id + '">Вернуться к продукту</a></div></div>';
+  return '<div class="card" style="max-width:620px">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">' +
+      '<h1 style="font-size:24px">Заявка принята</h1><span class="status ok">' + esc(REQUEST_ID) + '</span></div>' +
+    '<p style="color:var(--ink-2);margin:0 0 6px">Продукт: ' + esc(p.title) + '. Менеджер свяжется в рабочий день, статус заявки виден в разделе.</p>' +
+    '<p style="color:var(--muted);font-size:13.5px;margin:0">В прототипе заявка никуда не отправлена и нигде не сохранена.</p>' +
+    '<div class="btn-row"><a class="btn btn-primary" href="#/request">Отследить статус</a>' +
+    '<a class="btn" href="#/">На главную Инвестбанка</a></div></div>';
 };
 
 VIEWS.markets = function(tab){
@@ -493,7 +815,7 @@ VIEWS.markets = function(tab){
   inner += '<div class="list">' + m.items.map(function(t){
     return '<a href="' + (t.indexOf("Как бизнесу") === 0 ? "#/article/broker-account" : stub(t)) + '">' + esc(t) + '</a>';
   }).join("") + '</div>';
-  return crumbs([["Инвестбанк","#/"],["Обзор рынков"]]) + quickbar() +
+  return crumbs([["Инвестбанк","#/"],["Обзор рынков"]]) + quickbar() + qualNotice() +
     '<h1 class="plain">Обзор рынков</h1>' +
     '<div class="tabs" role="tablist">' + tabs + '</div>' +
     '<div class="panel">' + inner + '</div>';
@@ -504,7 +826,7 @@ VIEWS.article = function(){
     '<h1 class="plain">Как бизнесу открыть брокерский счет</h1>' +
     '<div class="panel"><p>Брокерский счет позволяет бизнесу получить доступ к большому количеству финансовых инструментов и более эффективно управлять капиталом.</p>' +
     '<p>Для открытия нужен расчётный счёт в банке, устав, решение о назначении руководителя и заявление на брокерское обслуживание. Открытие занимает до трёх рабочих дней, активация торгового доступа — ещё один день.</p>' +
-    '<div style="margin-top:22px"><a class="btn btn-primary" href="#/apply/broker">Оставить заявку</a></div></div>';
+    '<div class="btn-row"><a class="btn btn-primary" href="#/apply/broker">Оставить заявку</a></div></div>';
 };
 
 VIEWS.report = function(){
@@ -518,11 +840,20 @@ VIEWS.report = function(){
         '<label class="opt"><span>PDF <span class="hint">(с подписью)</span></span><input type="checkbox" name="fmt" value="PDF" checked></label>' +
         '<label class="opt"><span>Excel <span class="hint">(без подписи)</span></span><input type="checkbox" name="fmt" value="Excel"></label>' +
         '<label class="opt"><span>XML <span class="hint">(без подписи)</span></span><input type="checkbox" name="fmt" value="XML"></label></div>' +
-      '<div style="margin-top:22px"><button class="btn btn-primary" type="submit">Сформировать</button></div>' +
+      '<div class="btn-row"><button class="btn btn-primary" type="submit">Сформировать</button></div>' +
     '</form>';
 };
 
 VIEWS.stub = function(title){
+  var locked = QUAL_ONLY.indexOf(title) > -1 && !isQual();
+  if(locked){
+    return crumbs([["Инвестбанк","#/"],[title]]) + quickbar() +
+      titlebar(title, '<span class="status wait">Недоступно</span>') +
+      '<div class="notice"><div><h4>Продукт доступен квалифицированным инвесторам</h4>' +
+      '<p>Компания пока не имеет статуса квалифицированного инвестора, поэтому оформление этого инструмента закрыто. Получение статуса занимает до двух рабочих дней.</p>' +
+      '<div class="btn-row" style="margin-top:14px"><a class="btn btn-primary" href="#/qual">Получить статус</a>' +
+      '<a class="btn" href="#/markets/bonds">Показать доступные инструменты</a></div></div></div>';
+  }
   return '<div class="empty"><div class="pill" style="margin-bottom:14px">Вне прототипа</div>' +
     '<h2>' + esc(title || "Этот экран") + '</h2>' +
     '<p>Этого экрана нет в прототипе — он существует в интернет-банке, но в макет «Инвестбанка» не входит.</p>' +
@@ -531,16 +862,27 @@ VIEWS.stub = function(title){
       '<a class="btn btn-ghost" href="#/">На главную Инвестбанка</a></div></div>';
 };
 
-/* ---------- роутер ---------- */
+/* ============ роутер ============ */
 function render(){
   closeMenu();
   var hash = location.hash || "#/", q = "", path = hash, qi = hash.indexOf("?");
   if(qi > -1){ q = hash.slice(qi + 1); path = hash.slice(0, qi); }
   var parts = path.replace(/^#\/?/, "").split("/").filter(Boolean), html;
 
+  if(parts[0] === "persona" && parts[1]){
+    setPersona(parts[1]); location.hash = "#/"; return;
+  }
+
   if(parts.length === 0) html = VIEWS.home();
   else if(parts[0] === "portfolio" && parts[1] === "broker") html = VIEWS.broker(parts[2]);
   else if(parts[0] === "portfolio") html = VIEWS.portfolio();
+  else if(parts[0] === "transfer" && parts[1] === "confirm") html = VIEWS.transferConfirm();
+  else if(parts[0] === "transfer" && parts[1] === "sign") html = VIEWS.transferSign();
+  else if(parts[0] === "transfer" && parts[1] === "done") html = VIEWS.transferDone();
+  else if(parts[0] === "transfer") html = VIEWS.transfer();
+  else if(parts[0] === "request") html = VIEWS.request();
+  else if(parts[0] === "history") html = VIEWS.history();
+  else if(parts[0] === "qual") html = VIEWS.qual();
   else if(parts[0] === "product") html = VIEWS.product(parts[1]);
   else if(parts[0] === "apply" && parts[2] === "done") html = VIEWS.applyDone(parts[1]);
   else if(parts[0] === "apply") html = VIEWS.apply(parts[1]);
@@ -553,6 +895,7 @@ function render(){
   }
   else html = VIEWS.stub("Страница не найдена");
 
+  if(html === "") return;
   document.getElementById("view").innerHTML = html;
   window.scrollTo(0,0);
   bind();
@@ -560,9 +903,53 @@ function render(){
   document.getElementById("burger").setAttribute("aria-expanded","false");
 }
 
+/* ============ обработчики ============ */
 function bind(){
   var form = document.getElementById("applyForm");
   if(form) form.addEventListener("submit", onApply);
+
+  var tf = document.getElementById("transferForm");
+  if(tf){
+    var from = document.getElementById("from"), hint = document.getElementById("availHint");
+    var showAvail = function(){
+      var a = ACCOUNTS.filter(function(x){ return x.id === from.value; })[0];
+      hint.textContent = "Доступно " + rub(a.avail) + " ₽";
+    };
+    from.addEventListener("change", showAvail); showAvail();
+    tf.addEventListener("submit", onTransfer);
+    document.getElementById("sum").addEventListener("input", function(){
+      var d = this.value.replace(/\D/g, "");
+      this.value = d ? new Intl.NumberFormat("ru-RU").format(Number(d)) : "";
+    });
+  }
+
+  var toSign = document.getElementById("toSign");
+  if(toSign) toSign.addEventListener("click", function(){
+    if(canSign()) location.hash = "#/transfer/sign";
+    else { transfer.signed = false; transfer.doc = docNo(); location.hash = "#/transfer/done"; }
+  });
+
+  var sf = document.getElementById("signForm");
+  if(sf) sf.addEventListener("submit", function(e){
+    e.preventDefault();
+    var code = document.getElementById("code");
+    var ok = /^\d{4}$/.test(code.value.trim());
+    document.getElementById("f-code").classList.toggle("err", !ok);
+    if(!ok){ toast("Введите код из четырёх цифр"); return; }
+    transfer.signed = true; transfer.doc = docNo();
+    location.hash = "#/transfer/done";
+  });
+
+  var signDocs = document.getElementById("signDocs");
+  if(signDocs) signDocs.addEventListener("click", function(){ toast("Документы подписаны (демо). Счёт активируется до 19.09.2026"); });
+  var askSign = document.getElementById("askSign");
+  if(askSign) askSign.addEventListener("click", function(){ toast("Запрос подписи отправлен руководителю (демо)"); });
+
+  var fType = document.getElementById("fType");
+  if(fType) fType.addEventListener("change", function(){ VIEWS.history.type = this.value; render(); });
+  var fPeriod = document.getElementById("fPeriod");
+  if(fPeriod) fPeriod.addEventListener("change", function(){ toast("Период «" + this.value + "» — в прототипе данные не меняются"); });
+
   var rep = document.getElementById("reportForm");
   if(rep) rep.addEventListener("submit", function(e){
     e.preventDefault();
@@ -571,14 +958,32 @@ function bind(){
     if(!accs.length || !fmts.length){ toast("Выберите счет и тип отчета"); return; }
     toast("Отчет " + fmts.join(", ") + " по счету " + accs.join(", ") + " формируется (демо)");
   });
+
   var back = document.getElementById("backBtn");
   if(back) back.addEventListener("click", function(){ if(history.length > 1) history.back(); else location.hash = "#/"; });
 }
 
+function docNo(){ return "ПП-" + Math.floor(100000 + Math.random() * 899999); }
+
+function onTransfer(e){
+  e.preventDefault();
+  var from = document.getElementById("from").value;
+  var acc = ACCOUNTS.filter(function(a){ return a.id === from; })[0];
+  var sum = Number(document.getElementById("sum").value.replace(/\D/g, ""));
+  var err = document.getElementById("sumErr"), wrap = document.getElementById("f-sum");
+  var msg = "";
+  if(!sum) msg = "Укажите сумму";
+  else if(sum < 100000) msg = "Минимальная сумма пополнения — 100 000 ₽";
+  else if(sum > acc.avail) msg = "На счёте доступно " + rub(acc.avail) + " ₽";
+  wrap.classList.toggle("err", !!msg);
+  if(msg){ err.textContent = msg; toast(msg); return; }
+  transfer = { from:from, sum:sum, signed:false, doc:docNo() };
+  location.hash = "#/transfer/confirm";
+}
+
 function onApply(e){
   e.preventDefault();
-  var id = location.hash.split("/")[2] || "broker";
-  var ok = true;
+  var id = location.hash.split("/")[2] || "broker", ok = true;
   function mark(wrapId, good){ document.getElementById(wrapId).classList.toggle("err", !good); if(!good) ok = false; }
   mark("f-name", document.getElementById("fio").value.trim().split(/\s+/).length >= 2);
   mark("f-phone", document.getElementById("phone").value.replace(/\D/g,"").length === 11);
@@ -588,6 +993,7 @@ function onApply(e){
   location.hash = "#/apply/" + id + "/done";
 }
 
+/* меню */
 var openMenu = null;
 function closeMenu(){
   if(!openMenu) return;
@@ -602,7 +1008,8 @@ function showMenu(id){
   if(!m) return;
   document.getElementById("menuHost").innerHTML = '<div class="menu" role="menu">' + m.groups.map(function(g){
     return '<div class="col"><h5>' + esc(g.h) + '</h5>' + g.items.map(function(it){
-      return '<a role="menuitem" href="' + it[1] + '">- ' + esc(it[0]) + '</a>';
+      var lock = QUAL_ONLY.indexOf(it[0]) > -1 && !isQual();
+      return '<a role="menuitem" class="' + (lock ? "locked" : "") + '" href="' + it[1] + '">- ' + esc(it[0]) + (lock ? " 🔒" : "") + '</a>';
     }).join("") + '</div>';
   }).join("") + '</div>';
   document.querySelector('.menubtn[data-menu="' + id + '"]').setAttribute("aria-expanded","true");
@@ -615,12 +1022,15 @@ document.addEventListener("click", function(e){
   if(mb){ var id = mb.getAttribute("data-menu"); if(openMenu === id) closeMenu(); else { closeMenu(); showMenu(id); } return; }
   var go = t.closest ? t.closest("[data-go]") : null;
   if(go){ location.hash = go.getAttribute("data-go"); return; }
+  var ex = t.closest ? t.closest("[data-export]") : null;
+  if(ex){ toast("Выгрузка " + ex.getAttribute("data-export") + " формируется (демо)"); return; }
   var demo = t.closest ? t.closest("[data-demo]") : null;
-  if(demo){ toast(demo.getAttribute("data-demo")); return; }
+  if(demo){ e.preventDefault(); toast(demo.getAttribute("data-demo")); return; }
   if(openMenu && !(t.closest && t.closest(".menu"))) closeMenu();
 });
 document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeMenu(); });
 
+/* левое меню и шапка */
 document.getElementById("nav").innerHTML = NAV.map(function(n){
   if(n.grp) return '<div class="grp">' + esc(n.grp) + '</div>';
   return '<a href="' + n.href + '"' + (n.key === "invest" ? ' data-nav="invest"' : '') + '>' + esc(n.t) + '</a>';
@@ -630,7 +1040,6 @@ document.getElementById("burger").addEventListener("click", function(){
   var open = document.getElementById("rail").classList.toggle("open");
   this.setAttribute("aria-expanded", String(open));
 });
-
 document.getElementById("search").addEventListener("keydown", function(e){
   if(e.key === "Enter" && this.value.trim()){ location.hash = stub("Поиск: " + this.value.trim()); this.value = ""; }
 });
@@ -640,6 +1049,28 @@ function markNav(){
   document.querySelectorAll("#nav a").forEach(function(a){ a.classList.remove("active"); });
   if(inInvest){ var el = document.querySelector('#nav a[data-nav="invest"]'); if(el) el.classList.add("active"); }
 }
+
+/* переключатели демо */
+var personaSel = document.getElementById("personaSel"), roleSel = document.getElementById("roleSel");
+function setPersona(p){
+  if(["qual","new","notqual"].indexOf(p) < 0) return;
+  state.persona = p; personaSel.value = p;
+  try{ localStorage.setItem("ib-persona", p); }catch(e){}
+}
+function setRole(r){
+  state.role = r; roleSel.value = r;
+  document.getElementById("userRole").textContent = r === "director" ? "Руководитель" : "Казначей";
+  try{ localStorage.setItem("ib-role", r); }catch(e){}
+}
+personaSel.addEventListener("change", function(){
+  setPersona(this.value); render();
+  toast(this.value === "new" ? "Клиент без продуктов" : this.value === "notqual" ? "Неквалифицированный инвестор" : "Клиент с портфелем");
+});
+roleSel.addEventListener("change", function(){
+  setRole(this.value); render();
+  toast(this.value === "director" ? "Роль: руководитель — может подписывать" : "Роль: казначей — готовит документы");
+});
+setPersona(state.persona); setRole(state.role);
 
 window.addEventListener("hashchange", function(){ render(); markNav(); });
 render(); markNav();
