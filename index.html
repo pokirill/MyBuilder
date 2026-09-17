@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>Инвестбанк — Совкомбанк Бизнес</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,24 +17,7 @@
   --c1:#0033A1; --c2:#2E6BDC; --c3:#79A7EE; --c4:#B9D2F7; --c5:#12938E;
   --shadow:0 1px 2px rgba(14,27,46,.06), 0 8px 24px rgba(14,27,46,.06);
   --radius:12px;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#0B1220; --surface:#131D30; --surface-2:#18243B; --line:#26344F; --line-soft:#1E2B44;
-    --ink:#E9EFF9; --ink-2:#C3D0E4; --muted:#94A6C0;
-    --blue:#7FA8F5; --blue-2:#9CBDF9; --red:#FF3D5F; --red-ink:#160308;
-    --ok:#4FD1A5; --warn:#E3B55F;
-    --c1:#5E8FEE; --c2:#3E6FD6; --c3:#9CBDF9; --c4:#2A3C5D; --c5:#2FB3AC;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#0B1220; --surface:#131D30; --surface-2:#18243B; --line:#26344F; --line-soft:#1E2B44;
-  --ink:#E9EFF9; --ink-2:#C3D0E4; --muted:#94A6C0;
-  --blue:#7FA8F5; --blue-2:#9CBDF9; --red:#FF3D5F; --red-ink:#160308;
-  --ok:#4FD1A5; --warn:#E3B55F;
-  --c1:#5E8FEE; --c2:#3E6FD6; --c3:#9CBDF9; --c4:#2A3C5D; --c5:#2FB3AC;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -116,7 +100,6 @@ button{font:inherit; color:inherit}
 .tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px}
 .tab{padding:8px 15px; border-radius:999px; border:1px solid var(--line); background:var(--surface); cursor:pointer; font-size:14px; color:var(--ink-2)}
 .tab[aria-selected="true"]{background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600}
-:root[data-theme="dark"] .tab[aria-selected="true"], :root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#0B1220}
 .rows{display:flex; flex-direction:column}
 .row{
   display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; text-align:left;
@@ -475,7 +458,6 @@ function quickbar(){
     '<button class="chip" data-demo="Раздел помощи не входит в прототип">Помощь</button>' +
     '<button class="chip" data-demo="Чат с персональным менеджером — заглушка">Ваш менеджер</button>' +
     '<button class="chip" data-demo="Возврат к предыдущей версии интерфейса — заглушка">Предыдущая версия</button>' +
-    '<button class="chip" id="themeBtn">Сменить тему</button>' +
     '</div>';
 }
 
@@ -715,8 +697,6 @@ function bind(){
   });
   var back = document.getElementById("backBtn");
   if(back) back.addEventListener("click", function(){ if(history.length > 1) history.back(); else location.hash = "#/"; });
-  var theme = document.getElementById("themeBtn");
-  if(theme) theme.addEventListener("click", toggleTheme);
 }
 
 function onApply(e){
@@ -771,21 +751,6 @@ document.addEventListener("click", function(e){
 });
 document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeMenu(); });
 
-/* ---- тема ---- */
-function toggleTheme(){
-  var cur = document.documentElement.getAttribute("data-theme");
-  var next;
-  if(cur === "dark") next = "light";
-  else if(cur === "light") next = "dark";
-  else next = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  try{ localStorage.setItem("ib-theme", next); }catch(err){}
-  toast(next === "dark" ? "Тёмная тема" : "Светлая тема");
-}
-try{
-  var saved = localStorage.getItem("ib-theme");
-  if(saved) document.documentElement.setAttribute("data-theme", saved);
-}catch(err){}
 
 /* ---- левое меню, поиск, бургер ---- */
 document.getElementById("nav").innerHTML = NAV.map(function(n){
